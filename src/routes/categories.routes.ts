@@ -16,7 +16,7 @@ categoriesRoutes.post('/', (request, response) => {
 
   categoriesRepository.create({ name, description });
 
-  response.status(201).send();
+  return response.status(201).send();
 });
 
 categoriesRoutes.get('/', (request, response) => {
