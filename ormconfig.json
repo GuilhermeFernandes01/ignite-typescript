@@ -4,5 +4,11 @@
   "host": "localhost",
   "username": "docker",
   "password": "ignite",
-  "database": "rentx"
+  "database": "rentx",
+  "migrations": ["./database/migrations/*.ts"],
+  "entities": ["./src/modules/**/entities/*.ts"],
+  "synchronize": true,
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
