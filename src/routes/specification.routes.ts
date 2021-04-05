@@ -8,6 +8,7 @@ const specificationRoutes = Router();
 const createSpecificationsController = new CreateSpecificationController();
 
 specificationRoutes.use(ensureAuthenticated);
+
 specificationRoutes.post('/', createSpecificationsController.handle);
 
 export default specificationRoutes;
