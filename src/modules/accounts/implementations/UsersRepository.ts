@@ -1,4 +1,3 @@
-import { injectable } from 'tsyringe';
 import { getRepository, Repository } from 'typeorm';
 
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
