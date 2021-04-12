@@ -64,3 +64,4 @@ Ao realizar a devolução, o usuário deverá ser liberado para outro aluguel.
 Ao realizar a devolução, deverá ser calculado o total do aluguel.
 Caso o horário de devolução seja superior ao horário previsto de entrega, deverá ser cobrado multa proporcional aos dias de atraso.
 Caso haja multa, deverá ser somado ao total do aluguel.
+O usuário deve estar logado.
