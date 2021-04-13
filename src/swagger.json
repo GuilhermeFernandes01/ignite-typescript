@@ -84,7 +84,9 @@
     },
     "/categories/import": {
       "post": {
-        "tags": ["Category"],
+        "tags": [
+          "Category"
+        ],
         "summary": "Upload new category",
         "description": "Upload new category",
         "security": [
@@ -116,7 +118,9 @@
     },
     "/specifications": {
       "post": {
-        "tags": ["Specifications"],
+        "tags": [
+          "Specifications"
+        ],
         "summary": "Create a specification",
         "description": "Create a new specification",
         "security": [
@@ -145,7 +149,9 @@
     },
     "/sessions": {
       "post": {
-        "tags": ["Session"],
+        "tags": [
+          "Session"
+        ],
         "summary": "User authentication",
         "description": "User authentication",
         "requestBody": {
@@ -177,7 +183,9 @@
     },
     "/cars": {
       "post": {
-        "tags": ["Cars"],
+        "tags": [
+          "Cars"
+        ],
         "summary": "Create a car",
         "description": "Create a new car",
         "security": [
@@ -206,7 +214,9 @@
     },
     "/cars/images/{id}": {
       "post": {
-        "tags": ["Cars"],
+        "tags": [
+          "Cars"
+        ],
         "summary": "Upload car images",
         "description": "Uplaod car images",
         "security": [
@@ -214,15 +224,17 @@
             "bearerAuth": []
           }
         ],
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "description": "Car id",
-          "required": "true",
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id",
+            "required": "true",
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
