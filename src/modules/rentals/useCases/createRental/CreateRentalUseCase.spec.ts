@@ -27,9 +27,19 @@ describe('Create rental', () => {
   });
 
   it('Should be able to create a new rental', async () => {
+    const car = await carsRepositoryInMemory.create({
+      name: 'Car name',
+      description: 'Car description',
+      daily_rate: 100,
+      license_plate: 'ABC123',
+      fine_amount: 60,
+      brand: 'Car brand',
+      category_id: 'Category',
+    });
+
     const rental = await createRentalUseCase.execute({
       user_id: '123456',
-      car_id: '123456',
+      car_id: car.id,
       expected_return_date: tomorrow,
     });
 
@@ -38,19 +48,21 @@ describe('Create rental', () => {
   });
 
   it('Should not be able to create a new rental if user already has one', async () => {
-    expect(async () => {
-      await createRentalUseCase.execute({
-        user_id: '123456',
-        car_id: '123456',
-        expected_return_date: tomorrow,
-      });
+    await rentalsRepositoryInMemory.create({
+      car_id: '123456',
+      expected_return_date: tomorrow,
+      user_id: '123456',
+    });
 
-      await createRentalUseCase.execute({
-        user_id: '123456',
-        car_id: '123456',
+    await expect(
+      createRentalUseCase.execute({
+        car_id: '654321',
         expected_return_date: tomorrow,
-      });
-    }).rejects.toBeInstanceOf(AppError);
+        user_id: '123456',
+      })
+    ).rejects.toEqual(
+      new AppError('There is a rental in progress for this user')
+    );
   });
 
   it('Should not be able to create a new rental when devolution date < 24 hours from the moment of rent', async () => {
@@ -60,6 +72,6 @@ describe('Create rental', () => {
         car_id: '123456',
         expected_return_date: dayjs().toDate(),
       });
-    }).rejects.toBeInstanceOf(AppError);
+    }).rejects.toEqual(new AppError('Invalid devolution car datetime'));
   });
 });
